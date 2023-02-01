@@ -139,13 +139,13 @@ _manual_select_disk(){
 
 _set_bootlist(){
 	ROOTVG=$(lsvg -p rootvg | grep hdisk | awk '{ print $1 '})
-	EXEC=$(echo $ROOTVG | awk '{ print "bootlist -m normal \"" $0 "\"" '})
+	EXEC=$(echo $ROOTVG | awk '{ print "sudo bootlist -m normal \"" $0 "\"" '})
 	echo $EXEC |  sh
-	bootlist -m normal -o
+	sudo bootlist -m normal -o
 }
 
 _create_alt_disk(){
-	echo "sudo alt_disk_copy -d \""${FINAL_DISKS[@]}"\""
+	echo "sudo alt_disk_copy -d \""${FINAL_DISKS[@]}"\"" | sh
 }
 
 _delete_alt_disk(){
@@ -160,11 +160,6 @@ if [ $# -eq 0 ]
 fi
 
 case $1 in
-	'1')
-		_get_rootvg_info
-		_calculate_disk_numbers
-		_set_bootlist
-	;;
 	'AUTO')
 		_get_rootvg_info
 		_finding_free_disks
@@ -172,6 +167,7 @@ case $1 in
 		_show_candidates_disks
 		_auto_select_disk
 		_create_alt_disk
+		_set_bootlist
 	;;
 	'MANUAL')
 		_get_rootvg_info
@@ -179,9 +175,12 @@ case $1 in
 		_calculate_disk_numbers
 		_show_candidates_disks
 		_manual_select_disk
+		_create_alt_disk
+		_set_bootlist
 	;;
 	'DELETE')
 		_delete_alt_disk
+		_set_bootlist
 	;;
 	*)
 		echo "Invalid arguments."
