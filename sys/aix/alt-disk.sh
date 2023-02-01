@@ -7,21 +7,21 @@
 # -> Creacion de Disco Alterno.
 # Automatico:
 # 1. Valida actual disco rootvg para obtener taman~o y cantidad.
-# 2. Busca un disco libre de similar taman~o para utilizar como alterno, en caso de no existir da la posibilidad de utiizar otro disco mas grande.
+# 2. Busca un disco libre de similar taman~o para utilizar como alterno, en caso de no existir utiizara otro disco mas grande libre.
 # 3. Genera disco alterno.
 # 4. Editar bootlist para regresar al disco anterior.
-# 5. En caso de no existir discos libre o de mayor taman~o finaliza.
+# 5. En caso de no existir discos libre o de igual o mayor taman~o finaliza.
 # Manual:
 # 1. Valida actual disco rootvg para obtener taman~o y cantidad.
 # 2. Busca un disco libre o de similar taman~o para utilizar como alterno, presenta las opciones para escoger el/los disco(s).
 # 3. Genera disco alterno.
 # 4. Editar bootlist para regresar al disco anterior.
-# 5. En caso de no existir discos libre o de mayor taman~o finaliza.
+# 5. En caso de no existir discos libre o de igual o mayor taman~o finaliza.
 #
 # -> Eliminacion de Disco Alterno.
 # 1. Valida actual disco rootvg
 # 2. Actualiza bootlist para utilizar actual disco rootvg
-# 3. Busca y elimina el disco old_rootvg
+# 3. Busca y elimina el disco altinst_rootvg" y "old_rootvg"
 #
 # Modo de ejecucion:
 # ./alt-disk.sh [option]
