@@ -63,13 +63,12 @@ _get_rootvg_info(){
 }
 
 _finding_free_disks(){
-	for i in $(lspv | grep None | awk '{ print $1 '}); do printf "%s %s\n" $(echo $i) $(getconf DISK_SIZE /dev/$i); done > /tmp/salida
-	for i in $(cat /tmp/salida | sort -k2)
+	for i in $(lspv | grep None | awk '{ print $1 '})
 	do
 		CANDITATE_DISKS[${CANDITATE_COUNT}]=$i
 		CANDITATE_COUNT=$(eval expr $CANDITATE_COUNT + 1)
-		#CANDITATE_DISKS[${CANDITATE_COUNT}]=$(getconf DISK_SIZE /dev/$i)
-		#CANDITATE_COUNT=$(eval expr $CANDITATE_COUNT + 1)
+		CANDITATE_DISKS[${CANDITATE_COUNT}]=$(getconf DISK_SIZE /dev/$i)
+		CANDITATE_COUNT=$(eval expr $CANDITATE_COUNT + 1)
 	done
 }
 
@@ -83,7 +82,9 @@ _calculate_disk_numbers(){
 _show_candidates_disks(){
 	#set -x
 	VARLOOP1=0
+	VARLOOP2=0
 	VARSIZE1=2
+	VARSIZE2=2
 	VARSELECT=1
 	echo "Total disk in rootvg: "$TOTAL_ROOTVG
 	echo ""
@@ -109,6 +110,7 @@ _show_candidates_disks(){
 		echo ""
 	done
 }
+
 
 _auto_select_disk(){
 	VARLOOP1=0
@@ -156,7 +158,7 @@ _delete_alt_disk(){
 
 if [ $# -eq 0 ]
   then
-	echo "No arguments supplied"; exit 1
+    echo "No arguments supplied"; exit 1
 fi
 
 case $1 in
