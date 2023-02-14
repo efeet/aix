@@ -31,6 +31,10 @@
 #			MANUAL = Solicita el nombre de los discos para Crear disco alterno.
 #			DELETE = Elimina discos alternos marcados como "altinst_rootvg" y "old_rootvg", asegura el bootlist antes de eliminar.
 
+#Seccion de mejoras:
+# - Quitar mirror en roovg para usar disco como alt_disk
+#
+
 #Array rootvg disks
 set -A ROOTVG_DISK
 #Array candidates disks
