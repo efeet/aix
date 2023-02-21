@@ -17,7 +17,8 @@ HOSTNAME=$(uname -n)
 DATE=$(date +%d%b%y)
 
 #Create Paths
-#BASE_PATH="/fsresp-so/Unix_Tsystems/scripts/Patches/Comandos_v2"
+#mkdir -p /fsresp-so/scripts/prepos/comandosv2
+#BASE_PATH="/fsresp-so/scripts/prepos/comandosv2"
 #Esta ruta define donde se guardaran los archivos generados, se podria guardar en el fsresp-so para tener un respaldo igual.
 mkdir -p /tmp/comandosv2
 BASE_PATH="/tmp/comandosv2"
